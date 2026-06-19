@@ -1,0 +1,1504 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Regulatory Risk Analysis — EY Kenya World Bank Debarment Case Study</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700;800&display=swap"
+    rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --ink: #1a1a1a;
+      --ink-mid: #3d3d3a;
+      --ink-soft: #6b6b67;
+      --ink-faint: #9c9a92;
+      --bg: #fafaf8;
+      --bg-card: #ffffff;
+      --bg-warm: #f5f3ef;
+      --accent: #b5380e;
+      --accent-light: #faeae5;
+      --gold: #8a6500;
+      --gold-light: #fdf3d0;
+      --teal: #0f6e56;
+      --teal-light: #e1f5ee;
+      --border: rgba(0, 0, 0, 0.10);
+      --border-strong: rgba(0, 0, 0, 0.18);
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+      --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    /* ── HERO ─────────────────────────────────── */
+    .hero {
+      background: var(--ink);
+      color: #fafaf8;
+      padding: 72px 48px 56px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -40px;
+      right: -40px;
+      width: 400px;
+      height: 400px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 50%;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -80px;
+      right: 60px;
+      width: 260px;
+      height: 260px;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      border-radius: 50%;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.45);
+      margin-bottom: 20px;
+    }
+
+    .hero-eyebrow span {
+      display: inline-block;
+      width: 24px;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(26px, 4vw, 42px);
+      font-weight: 800;
+      line-height: 1.15;
+      color: #ffffff;
+      max-width: 680px;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: #e8a98a;
+    }
+
+    .hero-sub {
+      font-size: 15px;
+      color: rgba(255, 255, 255, 0.55);
+      max-width: 560px;
+      margin-bottom: 36px;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    .meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .meta-label {
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    .meta-value {
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(181, 56, 14, 0.25);
+      border: 1px solid rgba(181, 56, 14, 0.4);
+      color: #f0937a;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 100px;
+      letter-spacing: 0.05em;
+    }
+
+    .status-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #e8593c;
+    }
+
+    /* ── LAYOUT ───────────────────────────────── */
+    .wrapper {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    .section {
+      padding: 56px 0 48px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section:last-child {
+      border-bottom: none;
+    }
+
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 8px;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    h2 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 20px;
+      line-height: 1.25;
+    }
+
+    h3 {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 12px;
+      letter-spacing: 0.01em;
+    }
+
+    p {
+      color: var(--ink-mid);
+      margin-bottom: 14px;
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ── CASE SNAPSHOT ───────────────────────── */
+    .snapshot-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 32px;
+    }
+
+    .snap-cell {
+      background: var(--bg-card);
+      padding: 20px 22px;
+    }
+
+    .snap-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 6px;
+    }
+
+    .snap-value {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--ink);
+      line-height: 1.35;
+    }
+
+    .snap-value.red {
+      color: var(--accent);
+    }
+
+    .snap-value.gold {
+      color: var(--gold);
+    }
+
+    .snap-value.teal {
+      color: var(--teal);
+    }
+
+    /* ── TIMELINE ─────────────────────────────── */
+    .timeline {
+      position: relative;
+      padding-left: 28px;
+      margin-top: 8px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 7px;
+      top: 4px;
+      bottom: 4px;
+      width: 1px;
+      background: var(--border-strong);
+    }
+
+    .tl-item {
+      position: relative;
+      margin-bottom: 28px;
+    }
+
+    .tl-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .tl-dot {
+      position: absolute;
+      left: -24px;
+      top: 4px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--bg-card);
+      border: 2px solid var(--border-strong);
+    }
+
+    .tl-dot.accent {
+      border-color: var(--accent);
+      background: var(--accent);
+    }
+
+    .tl-year {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: var(--ink-faint);
+      margin-bottom: 3px;
+    }
+
+    .tl-text {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+
+    .tl-sub {
+      font-size: 13px;
+      color: var(--ink-soft);
+      line-height: 1.5;
+    }
+
+    /* ── CARDS ────────────────────────────────── */
+    .card-grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .card-grid.cols-2 {
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+
+    .card-grid.cols-3 {
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 22px 24px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .card.accent-left {
+      border-left: 3px solid var(--accent);
+    }
+
+    .card.accent-gold {
+      border-left: 3px solid var(--gold);
+    }
+
+    .card.accent-teal {
+      border-left: 3px solid var(--teal);
+    }
+
+    .card-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      margin-bottom: 14px;
+    }
+
+    .card-icon.red {
+      background: var(--accent-light);
+    }
+
+    .card-icon.gold {
+      background: var(--gold-light);
+    }
+
+    .card-icon.teal {
+      background: var(--teal-light);
+    }
+
+    /* ── FISHBONE / CAUSE DIAGRAM ─────────────── */
+    .fishbone-wrap {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      margin: 24px 0;
+    }
+
+    .fishbone-wrap svg {
+      display: block;
+      width: 100%;
+    }
+
+    /* ── SWOT ─────────────────────────────────── */
+    .swot-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .swot-cell {
+      background: var(--bg-card);
+      padding: 24px;
+    }
+
+    .swot-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .swot-cell.sw .swot-label {
+      color: var(--teal);
+    }
+
+    .swot-cell.wk .swot-label {
+      color: var(--accent);
+    }
+
+    .swot-cell.op .swot-label {
+      color: var(--gold);
+    }
+
+    .swot-cell.th .swot-label {
+      color: #6b21a8;
+    }
+
+    .swot-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .swot-list li {
+      font-size: 13px;
+      color: var(--ink-mid);
+      padding-left: 14px;
+      position: relative;
+      line-height: 1.5;
+    }
+
+    .swot-list li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--ink-faint);
+      font-size: 11px;
+    }
+
+    /* ── STAKEHOLDER TABLE ────────────────────── */
+    .stake-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      margin-top: 8px;
+    }
+
+    .stake-table th {
+      text-align: left;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      padding: 8px 12px;
+      border-bottom: 1px solid var(--border-strong);
+    }
+
+    .stake-table td {
+      padding: 12px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+      color: var(--ink-mid);
+    }
+
+    .stake-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .stake-table td:first-child {
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    .power-pill {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 100px;
+    }
+
+    .power-h {
+      background: var(--accent-light);
+      color: var(--accent);
+    }
+
+    .power-m {
+      background: var(--gold-light);
+      color: var(--gold);
+    }
+
+    .power-l {
+      background: var(--teal-light);
+      color: var(--teal);
+    }
+
+    /* ── COMPARISON TABLE ─────────────────────── */
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      margin-top: 8px;
+    }
+
+    .compare-table th {
+      text-align: left;
+      padding: 10px 14px;
+      font-size: 11px;
+      font-weight: 600;
+      background: var(--bg-warm);
+      border-bottom: 1px solid var(--border-strong);
+      color: var(--ink);
+    }
+
+    .compare-table td {
+      padding: 11px 14px;
+      border-bottom: 1px solid var(--border);
+      color: var(--ink-mid);
+      vertical-align: top;
+    }
+
+    .compare-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .compare-table td:first-child {
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    .compare-table {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    /* ── RECOMMENDATIONS ──────────────────────── */
+    .rec-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin-top: 8px;
+    }
+
+    .rec-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 22px;
+    }
+
+    .rec-num {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--ink-faint);
+      margin-bottom: 8px;
+    }
+
+    .rec-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+
+    .rec-body {
+      font-size: 13px;
+      color: var(--ink-soft);
+      line-height: 1.55;
+    }
+
+    .rec-horizon {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 100px;
+      margin-top: 12px;
+    }
+
+    .h-imm {
+      background: var(--accent-light);
+      color: var(--accent);
+    }
+
+    .h-med {
+      background: var(--gold-light);
+      color: var(--gold);
+    }
+
+    .h-long {
+      background: var(--teal-light);
+      color: var(--teal);
+    }
+
+    /* ── IMPACT BARS ──────────────────────────── */
+    .impact-row {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 8px;
+    }
+
+    .impact-item {
+      display: grid;
+      grid-template-columns: 180px 1fr 48px;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .impact-label {
+      font-size: 13px;
+      color: var(--ink-mid);
+    }
+
+    .impact-track {
+      height: 6px;
+      background: var(--bg-warm);
+      border-radius: 100px;
+      overflow: hidden;
+    }
+
+    .impact-fill {
+      height: 100%;
+      border-radius: 100px;
+      background: var(--accent);
+    }
+
+    .impact-fill.gold {
+      background: var(--gold);
+    }
+
+    .impact-fill.teal {
+      background: var(--teal);
+    }
+
+    .impact-pct {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--ink-soft);
+      text-align: right;
+    }
+
+    /* ── FOOTER ───────────────────────────────── */
+    .doc-footer {
+      background: var(--ink);
+      color: rgba(255, 255, 255, 0.45);
+      text-align: center;
+      font-size: 12px;
+      padding: 28px 32px;
+      line-height: 1.7;
+    }
+
+    .doc-footer strong {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    /* ── HIGHLIGHT BOX ────────────────────────── */
+    .highlight {
+      background: var(--accent-light);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 8px 8px 0;
+      padding: 16px 20px;
+      margin: 24px 0;
+      font-size: 14px;
+      color: var(--ink-mid);
+      line-height: 1.6;
+    }
+
+    .highlight strong {
+      color: var(--ink);
+    }
+
+    .highlight.gold {
+      background: var(--gold-light);
+      border-color: var(--gold);
+    }
+
+    .highlight.teal {
+      background: var(--teal-light);
+      border-color: var(--teal);
+    }
+
+    @media (max-width: 600px) {
+      .hero {
+        padding: 48px 24px 40px;
+      }
+
+      .wrapper {
+        padding: 0 20px;
+      }
+
+      .impact-item {
+        grid-template-columns: 1fr;
+        gap: 4px;
+      }
+
+      .swot-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ══ HERO ══════════════════════════════════════════════════════════ -->
+  <div class="hero">
+    <div class="hero-eyebrow"><span></span> Business Analysis Case Study <span></span></div>
+    <h1>Regulatory Risk Analysis &amp; Business Continuity Strategy:<br><em>The EY Kenya Debarment Case</em></h1>
+    <p class="hero-sub">An in-depth investigation into the governance failures, regulatory mechanics, and strategic
+      recovery pathways arising from the World Bank's 30-month debarment of Ernst &amp; Young Kenya in 2024.</p>
+    <div class="hero-meta">
+      <div class="meta-item">
+        <span class="meta-label">Subject Entity</span>
+        <span class="meta-value">Ernst &amp; Young LLP, Kenya</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Sanctioning Body</span>
+        <span class="meta-value">World Bank Group</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Sanction Date</span>
+        <span class="meta-value">26 June 2024</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Debarment Period</span>
+        <span class="meta-value">30 months (conditional release)</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Current Status</span>
+        <div class="status-pill">
+          <div class="status-dot"></div>Debarred — Compliance Underway
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ CASE SNAPSHOT ══════════════════════════════════════════════════ -->
+  <div class="wrapper">
+    <section class="section">
+      <div class="section-label">01 — Case Overview</div>
+      <h2>At a Glance</h2>
+      <div class="snapshot-grid">
+        <div class="snap-cell">
+          <div class="snap-label">Misconduct Type</div>
+          <div class="snap-value red">Fraudulent &amp; Corrupt Practices</div>
+        </div>
+        <div class="snap-cell">
+          <div class="snap-label">Projects Involved</div>
+          <div class="snap-value">SCORE &amp; PFM II — Somalia</div>
+        </div>
+        <div class="snap-cell">
+          <div class="snap-label">Contracts Implicated</div>
+          <div class="snap-value red">4 contracts</div>
+        </div>
+        <div class="snap-cell">
+          <div class="snap-label">Settlement</div>
+          <div class="snap-value teal">Negotiated — EY admitted culpability</div>
+        </div>
+        <div class="snap-cell">
+          <div class="snap-label">Cross-Debarment</div>
+          <div class="snap-value gold">ADB · AfDB · EBRD · IDB</div>
+        </div>
+        <div class="snap-cell">
+          <div class="snap-label">Internal Consequence</div>
+          <div class="snap-value">Partner Laban Gathungu removed; court awarded Ksh 43M</div>
+        </div>
+      </div>
+
+      <p>On 26 June 2024, the World Bank Group announced the <strong>30-month debarment with conditional
+          release</strong> of Kenya-based Ernst &amp; Young LLP (EY Kenya). The debarment arose from EY Kenya's
+        involvement in two World Bank-financed programmes in Somalia — the Somali Core Economic Institutions and
+        Opportunities Programme (SCORE) and the Second Public Financial Management Capacity Strengthening Project (PFM
+        II).</p>
+
+      <p>EY Kenya was found to have: (1) <strong>failed to disclose conflicts of interest</strong> during the selection
+        and implementation of four contracts; (2) <strong>engaged an undisclosed agent</strong> in connection with those
+        contracts; and (3) <strong>made provision for irregular allowances</strong> to project officials — conduct the
+        World Bank characterised as fraudulent and corrupt practices under its Consultant Guidelines.</p>
+
+      <p>The debarment was part of a negotiated settlement under which EY Kenya admitted culpability. Mitigating factors
+        — voluntary cooperation, disciplinary action against responsible staff, and a voluntary bidding moratorium
+        during negotiations — reduced the sanction from a maximum potential period to 30 months.</p>
+    </section>
+
+    <!-- ══ TIMELINE ════════════════════════════════════════════════════════ -->
+    <section class="section">
+      <div class="section-label">02 — Chronology</div>
+      <h2>Case Timeline</h2>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-year">~2016–2019</div>
+          <div class="tl-text">EY Kenya awarded contracts under SCORE and PFM II</div>
+          <div class="tl-sub">Four consultancy contracts secured in Somalia under two World Bank-financed projects.
+            Undisclosed conflict of interest exists at point of bidding; an agent is engaged without disclosure.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-year">10 March 2018</div>
+          <div class="tl-text">Whistleblower letter sent to partner Laban Gathungu</div>
+          <div class="tl-sub">Internal communication surfaces evidence of a secret relationship with a Somali government
+            official who was sharing confidential procurement information and advising on pricing strategy.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-year">2019–2023</div>
+          <div class="tl-text">World Bank Integrity Vice Presidency (INT) investigation</div>
+          <div class="tl-sub">WB INT conducts formal investigation. Settlement negotiations commence. EY Kenya
+            voluntarily refrains from bidding for WBG-financed contracts during negotiations and takes internal
+            disciplinary action against responsible staff.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot accent"></div>
+          <div class="tl-year">26 June 2024</div>
+          <div class="tl-text">World Bank announces 30-month debarment — EY Kenya</div>
+          <div class="tl-sub">Public announcement of debarment with conditional release. Cross-debarment automatically
+            triggered across AfDB, ADB, EBRD, and IDB. EY Kenya required to implement an integrity compliance programme
+            aligned with WBG Integrity Compliance Guidelines.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-year">Post June 2024</div>
+          <div class="tl-text">Partner litigation — Laban Gathungu v EY Kenya</div>
+          <div class="tl-sub">Gathungu sued EY Kenya for wrongful removal, seeking Ksh 450 million in damages. The High
+            Court found the removal process unlawful and awarded him Ksh 43.12 million, declining the higher claim
+            citing his own "questionable behaviour."</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-year">March 2026</div>
+          <div class="tl-text">PwC Kenya and PwC Rwanda debarred — 21 months</div>
+          <div class="tl-sub">A second Big 4 firm in East Africa is debarred by the World Bank — in connection with the
+            Eastern Electricity Highway Project in Ethiopia — confirming a systemic audit integrity crisis across the
+            region's professional services sector.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot teal"></div>
+          <div class="tl-year">~December 2026 (projected)</div>
+          <div class="tl-text">Conditional release — if compliance conditions met</div>
+          <div class="tl-sub">EY Kenya may be reinstated to WBG project eligibility upon demonstrating full
+            implementation of the integrity compliance programme and continued cooperation with WBG INT.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ ROOT CAUSE — FISHBONE ══════════════════════════════════════════ -->
+    <section class="section">
+      <div class="section-label">03 — Root Cause Analysis</div>
+      <h2>Fishbone (Ishikawa) Diagram — What Went Wrong?</h2>
+      <p>A root cause analysis structures the systemic and proximate failures that enabled the misconduct. The fishbone
+        below maps six causal categories into the central problem: fraudulent practices under World Bank-financed
+        contracts.</p>
+
+      <div class="fishbone-wrap">
+        <svg viewBox="0 0 920 520" xmlns="http://www.w3.org/2000/svg" role="img">
+          <title>Fishbone diagram showing root causes of EY Kenya's World Bank debarment</title>
+          <defs>
+            <marker id="arr-fish" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5"
+              orient="auto-start-reverse">
+              <path d="M2 1L8 5L2 9" fill="none" stroke="#b5380e" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </marker>
+          </defs>
+
+          <!-- BG -->
+          <rect width="920" height="520" fill="#fafaf8" />
+
+          <!-- Central spine -->
+          <line x1="100" y1="260" x2="750" y2="260" stroke="#1a1a1a" stroke-width="2.5" stroke-linecap="round" />
+
+          <!-- Effect box -->
+          <rect x="752" y="220" width="150" height="80" rx="8" fill="#b5380e" />
+          <text x="827" y="252" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="700"
+            fill="#fff">Fraudulent &amp;</text>
+          <text x="827" y="268" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="700"
+            fill="#fff">Corrupt Practices</text>
+          <text x="827" y="284" text-anchor="middle" font-family="Inter,sans-serif" font-size="10"
+            fill="rgba(255,255,255,0.7)">WBG Debarment 2024</text>
+
+          <!-- ── UPPER BRANCHES ── -->
+
+          <!-- Branch 1: People/Culture (upper-left) -->
+          <line x1="180" y1="260" x2="180" y2="140" stroke="#1a1a1a" stroke-width="1.5" />
+          <line x1="180" y1="140" x2="420" y2="140" stroke="#1a1a1a" stroke-width="1.5" marker-end="url(#arr-fish)" />
+          <rect x="90" y="110" width="170" height="30" rx="6" fill="#1a1a1a" />
+          <text x="175" y="130" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="600"
+            fill="#fff">People &amp; Culture</text>
+          <!-- sub-causes -->
+          <line x1="220" y1="140" x2="220" y2="175" stroke="#6b6b67" stroke-width="1" />
+          <text x="225" y="170" font-family="Inter,sans-serif" font-size="11" fill="#3d3d3a">Revenue pressure on
+            partners</text>
+          <line x1="300" y1="140" x2="300" y2="195" stroke="#6b6b67" stroke-width="1" />
+          <text x="305" y="190" font-family="Inter,sans-serif" font-size="11" fill="#3d3d3a">Tone-at-the-top
+            failure</text>
+          <line x1="380" y1="140" x2="380" y2="175" stroke="#6b6b67" stroke-width="1" />
+          <text x="385" y="170" font-family="Inter,sans-serif" font-size="11" fill="#3d3d3a">Undisclosed agent
+            use</text>
+
+          <!-- Branch 2: Process (upper-mid) -->
+          <line x1="420" y1="260" x2="420" y2="80" stroke="#1a1a1a" stroke-width="1.5" />
+          <line x1="420" y1="80" x2="620" y2="80" stroke="#1a1a1a" stroke-width="1.5" marker-end="url(#arr-fish)" />
+          <rect x="330" y="50" width="160" height="30" rx="6" fill="#1a1a1a" />
+          <text x="410" y="70" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="600"
+            fill="#fff">Process Failures</text>
+          <line x1="460" y1="80" x2="460" y2="120" stroke="#6b6b67" stroke-width="1" />
+          <text x="465" y="115" font-family="Inter,sans-serif" font-size="11" fill="#3d3d3a">Weak COI disclosure
+            process</text>
+          <line x1="540" y1="80" x2="540" y2="140" stroke="#6b6b67" stroke-width="1" />
+          <text x="545" y="135" font-family="Inter,sans-serif" font-size="11" fill="#3d3d3a">Insufficient bid-stage
+            review</text>
+          <line x1="610" y1="80" x2="610" y2="120" stroke="#6b6b67" stroke-width="1" />
+          <text x="615" y="115" font-family="Inter,sans-serif" font-size="11" fill="#3d3d3a">Allowance approval
+            gaps</text>
+
+          <!-- Branch 3: Governance (upper-right) -->
+          <line x1="620" y1="260" x2="620" y2="140" stroke="#1a1a1a" stroke-width="1.5" />
+          <line x1="620" y1="140" x2="750" y2="140" stroke="#1a1a1a" stroke-width="1.5" marker-end="url(#arr-fish)" />
+          <rect x="580" y="110" width="160" height="30" rx="6" fill="#1a1a1a" />
+          <text x="660" y="130" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="600"
+            fill="#fff">Governance Gaps</text>
+          <line x1="640" y1="140" x2="640" y2="175" stroke="#6b6b67" stroke-width="1" />
+          <text x="645" y="170" font-family="Inter,sans-serif" font-size="11" fill="#3d3d3a">No independence
+            audits</text>
+          <line x1="710" y1="140" x2="710" y2="175" stroke="#6b6b67" stroke-width="1" />
+          <text x="715" y="170" font-family="Inter,sans-serif" font-size="11" fill="#3d3d3a">EQR did not flag
+            risks</text>
+
+          <!-- ── LOWER BRANCHES ── -->
+
+          <!-- Branch 4: Regulation (lower-left) -->
+          <line x1="200" y1="260" x2="200" y2="380" stroke="#1a1a1a" stroke-width="1.5" />
+          <line x1="200" y1="380" x2="420" y2="380" stroke="#1a1a1a" stroke-width="1.5" marker-end="url(#arr-fish)" />
+          <rect x="100" y="380" width="170" height="30" rx="6" fill="#1a1a1a" />
+          <text x="185" y="400" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="600"
+            fill="#fff">Regulatory Arbitrage</text>
+          <line x1="250" y1="380" x2="250" y2="345" stroke="#6b6b67" stroke-width="1" />
+          <text x="255" y="343" font-family="Inter,sans-serif" font-size="11" fill="#3d3d3a">ICPAK vs WBG standards
+            gap</text>
+          <line x1="340" y1="380" x2="340" y2="345" stroke="#6b6b67" stroke-width="1" />
+          <text x="345" y="343" font-family="Inter,sans-serif" font-size="11" fill="#3d3d3a">Multi-party accountability
+            gaps</text>
+
+          <!-- Branch 5: Client Dynamics (lower-mid) -->
+          <line x1="440" y1="260" x2="440" y2="430" stroke="#1a1a1a" stroke-width="1.5" />
+          <line x1="440" y1="430" x2="620" y2="430" stroke="#1a1a1a" stroke-width="1.5" marker-end="url(#arr-fish)" />
+          <rect x="350" y="430" width="160" height="30" rx="6" fill="#1a1a1a" />
+          <text x="430" y="450" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="600"
+            fill="#fff">Client Dynamics</text>
+          <line x1="480" y1="430" x2="480" y2="395" stroke="#6b6b67" stroke-width="1" />
+          <text x="485" y="393" font-family="Inter,sans-serif" font-size="11" fill="#3d3d3a">Fragile-state
+            context</text>
+          <line x1="560" y1="430" x2="560" y2="395" stroke="#6b6b67" stroke-width="1" />
+          <text x="565" y="393" font-family="Inter,sans-serif" font-size="11" fill="#3d3d3a">Insider access via
+            official</text>
+
+          <!-- Branch 6: Controls (lower-right) -->
+          <line x1="630" y1="260" x2="630" y2="380" stroke="#1a1a1a" stroke-width="1.5" />
+          <line x1="630" y1="380" x2="750" y2="380" stroke="#1a1a1a" stroke-width="1.5" marker-end="url(#arr-fish)" />
+          <rect x="580" y="380" width="160" height="30" rx="6" fill="#1a1a1a" />
+          <text x="660" y="400" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="600"
+            fill="#fff">Internal Controls</text>
+          <line x1="660" y1="380" x2="660" y2="345" stroke="#6b6b67" stroke-width="1" />
+          <text x="665" y="343" font-family="Inter,sans-serif" font-size="11" fill="#3d3d3a">Weak whistleblower
+            follow-up</text>
+          <line x1="730" y1="380" x2="730" y2="345" stroke="#6b6b67" stroke-width="1" />
+          <text x="570" y="310" font-family="Inter,sans-serif" font-size="11" fill="#3d3d3a">No ethics monitoring
+            system</text>
+
+          <!-- Legend -->
+          <rect x="40" y="472" width="12" height="12" rx="2" fill="#1a1a1a" />
+          <text x="58" y="482" font-family="Inter,sans-serif" font-size="11" fill="#6b6b67">Causal category</text>
+          <rect x="180" y="472" width="12" height="12" rx="2" fill="#b5380e" />
+          <text x="198" y="482" font-family="Inter,sans-serif" font-size="11" fill="#6b6b67">Effect (debarment
+            outcome)</text>
+          <text x="820" y="482" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#9c9a92">RCA —
+            EY Kenya 2024</text>
+        </svg>
+      </div>
+
+      <div class="card-grid cols-3" style="margin-top:24px;">
+        <div class="card accent-left">
+          <h3>Proximate Cause</h3>
+          <p style="font-size:13px;">Failure to disclose conflicts of interest across four contracts, use of an
+            undisclosed agent, and payment of irregular allowances to project officials — all constituting fraudulent
+            and corrupt practices under WBG Consultant Guidelines.</p>
+        </div>
+        <div class="card accent-gold">
+          <h3>Systemic Cause</h3>
+          <p style="font-size:13px;">Institutional pressure to retain high-value public sector mandates, absence of
+            mandatory COI disclosure controls, and a quality review process that failed to flag red flags — particularly
+            in a fragile-state context with elevated corruption risk.</p>
+        </div>
+        <div class="card accent-teal">
+          <h3>Contextual Cause</h3>
+          <p style="font-size:13px;">Somalia's governance environment created conditions where insider relationships
+            with officials were exploitable. The multi-stakeholder reporting chain in development finance created
+            opportunities for misconduct to go undetected for years.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ IMPACT ASSESSMENT ══════════════════════════════════════════════ -->
+    <section class="section">
+      <div class="section-label">04 — Impact Assessment</div>
+      <h2>Business Impact Across Dimensions</h2>
+
+      <div class="impact-row" style="margin-bottom:32px;">
+        <div class="impact-item">
+          <div class="impact-label">Reputational damage (Kenya market)</div>
+          <div class="impact-track">
+            <div class="impact-fill" style="width:92%"></div>
+          </div>
+          <div class="impact-pct">Critical</div>
+        </div>
+        <div class="impact-item">
+          <div class="impact-label">Loss of WBG project mandates</div>
+          <div class="impact-track">
+            <div class="impact-fill" style="width:100%"></div>
+          </div>
+          <div class="impact-pct">Total</div>
+        </div>
+        <div class="impact-item">
+          <div class="impact-label">Cross-MDB debarment scope</div>
+          <div class="impact-track">
+            <div class="impact-fill gold" style="width:85%"></div>
+          </div>
+          <div class="impact-pct">High</div>
+        </div>
+        <div class="impact-item">
+          <div class="impact-label">Regulatory scrutiny (ICPAK)</div>
+          <div class="impact-track">
+            <div class="impact-fill gold" style="width:70%"></div>
+          </div>
+          <div class="impact-pct">Elevated</div>
+        </div>
+        <div class="impact-item">
+          <div class="impact-label">Revenue impact (MDB-linked audits)</div>
+          <div class="impact-track">
+            <div class="impact-fill" style="width:80%"></div>
+          </div>
+          <div class="impact-pct">Severe</div>
+        </div>
+        <div class="impact-item">
+          <div class="impact-label">Staff morale &amp; talent retention</div>
+          <div class="impact-track">
+            <div class="impact-fill gold" style="width:60%"></div>
+          </div>
+          <div class="impact-pct">Moderate</div>
+        </div>
+        <div class="impact-item">
+          <div class="impact-label">EY Global brand contagion risk</div>
+          <div class="impact-track">
+            <div class="impact-fill teal" style="width:40%"></div>
+          </div>
+          <div class="impact-pct">Contained</div>
+        </div>
+      </div>
+
+      <div class="card-grid cols-2">
+        <div class="card">
+          <h3>Financial Impact</h3>
+          <p style="font-size:13px;">Loss of all World Bank-financed project audit and consulting mandates across the
+            region for 30 months. East Africa is a high-growth market for the Big 4 — development finance mandates
+            (multilateral, bilateral, NGO) represent a significant share of public-sector revenue. Cross-debarment
+            extends the commercial exclusion to AfDB, ADB, EBRD, and IDB-financed projects globally. Legal costs from
+            the WBG proceedings and the subsequent Gathungu litigation (Ksh 43M court award) add direct financial
+            liability.</p>
+        </div>
+        <div class="card">
+          <h3>Reputational Impact</h3>
+          <p style="font-size:13px;">The public nature of a World Bank debarment is by design: maximum deterrence
+            through transparency. For EY Kenya — a firm whose market proposition rests on trust and professional
+            integrity — the reputational damage in both government and multilateral circles is severe. Government
+            procurement frameworks in Kenya and across East Africa routinely check WBG debarment lists. Civil society,
+            donor community, and media scrutiny intensifies. The Gathungu litigation added a secondary public narrative
+            of internal dysfunction.</p>
+        </div>
+        <div class="card">
+          <h3>Impact on Development Projects</h3>
+          <p style="font-size:13px;">The SCORE and PFM II projects were designed to strengthen Somalia's economic
+            governance and revenue systems — essential state-building objectives in a fragile post-conflict environment.
+            Compromised assurance on financial statements creates uncertainty around fund utilisation. Implementing
+            agencies must appoint replacement auditors mid-project at additional cost and with potential delays.</p>
+        </div>
+        <div class="card">
+          <h3>Systemic Sector Signal</h3>
+          <p style="font-size:13px;">EY Kenya's debarment was followed less than two years later by PwC Kenya's
+            debarment in March 2026 — over collusive practices in the Eastern Electricity Highway Project. Two of the
+            Big 4 in East Africa debarred within two years signals a systemic audit quality and ethics crisis, and
+            raises questions about whether the professional services model for development finance requires structural
+            reform.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ SWOT ════════════════════════════════════════════════════════════ -->
+    <section class="section">
+      <div class="section-label">05 — Strategic Framework</div>
+      <h2>SWOT Analysis — EY Kenya Post-Debarment</h2>
+
+      <div class="swot-grid">
+        <div class="swot-cell sw">
+          <div class="swot-label">Strengths</div>
+          <ul class="swot-list">
+            <li>Global EY network brand retains value outside WBG-financed projects</li>
+            <li>Breadth of service lines (tax, advisory, assurance, IT) provides revenue diversification</li>
+            <li>Admission of culpability and cooperation secured a reduced sanction period</li>
+            <li>Strong existing relationships in Kenya's private sector remain intact</li>
+            <li>Compliance programme now underway — builds institutional capability</li>
+          </ul>
+        </div>
+        <div class="swot-cell wk">
+          <div class="swot-label">Weaknesses</div>
+          <ul class="swot-list">
+            <li>Complete exclusion from WBG, AfDB, ADB, EBRD, and IDB projects for debarment period</li>
+            <li>Reputational damage impairs new public sector mandate acquisition</li>
+            <li>Internal control failure now on public record — erodes investor confidence</li>
+            <li>Partner litigation created secondary reputational and financial liability</li>
+            <li>Staff uncertainty around leadership culture and accountability</li>
+          </ul>
+        </div>
+        <div class="swot-cell op">
+          <div class="swot-label">Opportunities</div>
+          <ul class="swot-list">
+            <li>Becoming a genuine compliance leader in East African audit — differentiation post-reinstatement</li>
+            <li>PwC debarment creates mandate opportunity vacuum in non-MDB public sector space</li>
+            <li>Integrity compliance programme is now a marketable credential with private sector clients</li>
+            <li>Regional growth in private equity, capital markets, and ESG assurance offers alternative revenue</li>
+            <li>ICPAK partnership opportunity to shape profession-wide ethics standards</li>
+          </ul>
+        </div>
+        <div class="swot-cell th">
+          <div class="swot-label">Threats</div>
+          <ul class="swot-list">
+            <li>Competitors (KPMG, Deloitte) aggressively targeting mandates vacated by EY Kenya</li>
+            <li>Failure to meet compliance conditions extends debarment further</li>
+            <li>Kenya government clients may avoid EY Kenya under public sector reputational pressure</li>
+            <li>Talent drain — senior staff may exit during uncertainty period</li>
+            <li>ICPAK disciplinary action against individual partners could intensify legal exposure</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ STAKEHOLDER MAP ════════════════════════════════════════════════ -->
+    <section class="section">
+      <div class="section-label">06 — Stakeholder Analysis</div>
+      <h2>Stakeholder Map</h2>
+
+      <table class="stake-table">
+        <thead>
+          <tr>
+            <th>Stakeholder</th>
+            <th>Role</th>
+            <th>Primary Interest</th>
+            <th>Power</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>World Bank Sanctions Board</td>
+            <td>Adjudicator</td>
+            <td>Uphold fiduciary integrity of WBG operations; maintain deterrent effect of sanctions</td>
+            <td><span class="power-pill power-h">High</span></td>
+          </tr>
+          <tr>
+            <td>WBG Integrity Vice Presidency (INT)</td>
+            <td>Investigator</td>
+            <td>Detect, investigate, and refer sanctionable misconduct; monitor compliance</td>
+            <td><span class="power-pill power-h">High</span></td>
+          </tr>
+          <tr>
+            <td>EY Kenya Leadership</td>
+            <td>Respondent / Rehabilitator</td>
+            <td>Restore eligibility, protect market position, manage litigation exposure</td>
+            <td><span class="power-pill power-m">Medium</span></td>
+          </tr>
+          <tr>
+            <td>EY Africa / EY Global</td>
+            <td>Network oversight</td>
+            <td>Brand protection; prevent escalation to global network-level action</td>
+            <td><span class="power-pill power-m">Medium</span></td>
+          </tr>
+          <tr>
+            <td>Somali Government (Implementing Agency)</td>
+            <td>Project manager</td>
+            <td>Project continuity; accountability to WBG and Somali taxpayers</td>
+            <td><span class="power-pill power-m">Medium</span></td>
+          </tr>
+          <tr>
+            <td>ICPAK</td>
+            <td>Local regulator</td>
+            <td>Profession integrity; may face political pressure to take parallel disciplinary action</td>
+            <td><span class="power-pill power-m">Medium</span></td>
+          </tr>
+          <tr>
+            <td>Other Big 4 firms (KPMG, Deloitte)</td>
+            <td>Competitors</td>
+            <td>Capture mandates vacated by EY Kenya across East Africa</td>
+            <td><span class="power-pill power-l">Low</span></td>
+          </tr>
+          <tr>
+            <td>Project Beneficiaries (Somalia)</td>
+            <td>End recipients</td>
+            <td>Continuity of development benefit; reliable project financial management</td>
+            <td><span class="power-pill power-l">Low</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- ══ COMPARATIVE ANALYSIS ══════════════════════════════════════════ -->
+    <section class="section">
+      <div class="section-label">07 — Comparative Analysis</div>
+      <h2>EY Kenya vs PwC Kenya — Debarment Comparison</h2>
+      <p>The World Bank's debarment of two Big 4 firms in East Africa within two years (2024 and 2026) is not a
+        coincidence — it reflects structural vulnerabilities in how development finance audit and consulting engagements
+        are structured across the region.</p>
+
+      <table class="compare-table" style="margin-top:20px;">
+        <thead>
+          <tr>
+            <th>Dimension</th>
+            <th>EY Kenya (2024)</th>
+            <th>PwC Kenya / PwC Rwanda (2026)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Announcement date</td>
+            <td>26 June 2024</td>
+            <td>18 March 2026</td>
+          </tr>
+          <tr>
+            <td>Debarment period</td>
+            <td>30 months</td>
+            <td>21 months</td>
+          </tr>
+          <tr>
+            <td>Project involved</td>
+            <td>SCORE &amp; PFM II — Somalia</td>
+            <td>Eastern Electricity Highway Project — Ethiopia</td>
+          </tr>
+          <tr>
+            <td>Nature of misconduct</td>
+            <td>Undisclosed COI; undisclosed agent; irregular allowances to officials</td>
+            <td>Collusive &amp; fraudulent practices; obtained confidential procurement information</td>
+          </tr>
+          <tr>
+            <td>Settlement</td>
+            <td>Negotiated — EY Kenya admitted culpability</td>
+            <td>Negotiated — PwC entities admitted culpability</td>
+          </tr>
+          <tr>
+            <td>Cross-debarment</td>
+            <td>AfDB, ADB, EBRD, IDB</td>
+            <td>AfDB, ADB, EBRD, IDB</td>
+          </tr>
+          <tr>
+            <td>Internal consequences</td>
+            <td>Partner Gathungu removed; court awarded Ksh 43M in wrongful removal suit</td>
+            <td>Internal investigation; disciplinary action; relationships with subconsultants terminated</td>
+          </tr>
+          <tr>
+            <td>Mitigating factors</td>
+            <td>Cooperation; voluntary bidding moratorium; staff action</td>
+            <td>Cooperation; staff training; internal investigation; voluntary moratorium</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="highlight gold" style="margin-top:24px;">
+        <strong>Key pattern:</strong> Both cases involve a combination of insider access to confidential procurement
+        information and failure to disclose conflicts or agent relationships. The settlement mechanism — admission in
+        exchange for reduced sanction — is now established practice, suggesting the WBG INT's approach is maturing into
+        a credible deterrence and rehabilitation framework.
+      </div>
+    </section>
+
+    <!-- ══ RECOMMENDATIONS ════════════════════════════════════════════════ -->
+    <section class="section">
+      <div class="section-label">08 — Strategic Recommendations</div>
+      <h2>Prevention, Recovery &amp; Long-Term Resilience</h2>
+
+      <h3 style="margin-bottom:16px; color: var(--accent);">A. For EY Kenya — Recovery Pathway</h3>
+      <div class="rec-grid">
+        <div class="rec-card">
+          <div class="rec-num">01</div>
+          <div class="rec-title">Execute the WBG Integrity Compliance Programme</div>
+          <div class="rec-body">Deliver the compliance programme on schedule as a non-negotiable condition of
+            reinstatement. Treat it as an institutional rebuild, not a box-ticking exercise — the quality of
+            implementation will be evaluated by WBG INT.</div>
+          <span class="rec-horizon h-imm">Immediate</span>
+        </div>
+        <div class="rec-card">
+          <div class="rec-num">02</div>
+          <div class="rec-title">Appoint a Chief Compliance Officer for East Africa</div>
+          <div class="rec-body">Create a dedicated CCO role with direct reporting to EY Africa leadership, empowered to
+            halt bid submissions and flag conflicts without partner interference — removing the structural vulnerability
+            of revenue-focused partners self-policing.</div>
+          <span class="rec-horizon h-imm">Immediate</span>
+        </div>
+        <div class="rec-card">
+          <div class="rec-num">03</div>
+          <div class="rec-title">Rebuild public sector client trust proactively</div>
+          <div class="rec-body">Engage ICPAK, the Kenyan government, and East African development partners in
+            transparent dialogue about the reforms undertaken. Public accountability — not silence — is the faster path
+            to reputational recovery.</div>
+          <span class="rec-horizon h-med">Medium-term</span>
+        </div>
+        <div class="rec-card">
+          <div class="rec-num">04</div>
+          <div class="rec-title">Diversify revenue away from MDB-financed mandates</div>
+          <div class="rec-body">Accelerate growth in private equity due diligence, ESG assurance, climate finance
+            advisory, and fintech audit — segments where reputation is not yet impacted and where East Africa's growth
+            trajectory creates genuine demand.</div>
+          <span class="rec-horizon h-med">Medium-term</span>
+        </div>
+        <div class="rec-card">
+          <div class="rec-num">05</div>
+          <div class="rec-title">Implement mandatory COI disclosure technology</div>
+          <div class="rec-body">Deploy a digital conflict-of-interest registry requiring partner attestation before any
+            public or multilateral bid is submitted. System-enforced disclosure eliminates reliance on individual
+            integrity as the sole control.</div>
+          <span class="rec-horizon h-med">Medium-term</span>
+        </div>
+        <div class="rec-card">
+          <div class="rec-num">06</div>
+          <div class="rec-title">Position post-reinstatement as a compliance differentiator</div>
+          <div class="rec-body">Upon reinstatement, market the integrity programme not as a remedial requirement but as
+            a genuine competitive advantage — the only Big 4 firm in East Africa to have built and independently
+            verified an MDB-grade compliance framework.</div>
+          <span class="rec-horizon h-long">Long-term</span>
+        </div>
+      </div>
+
+      <h3 style="margin: 32px 0 16px; color: var(--gold);">B. For the World Bank &amp; Multilateral Donors</h3>
+      <div class="rec-grid">
+        <div class="rec-card">
+          <div class="rec-num">07</div>
+          <div class="rec-title">Reform the auditor appointment model</div>
+          <div class="rec-body">Currently, audit firms are hired and paid by implementing agencies — creating an
+            inherent conflict. Donors having greater input into auditor selection for high-risk and fragile-state
+            contexts would structurally reduce capture risk.</div>
+          <span class="rec-horizon h-long">Long-term</span>
+        </div>
+        <div class="rec-card">
+          <div class="rec-num">08</div>
+          <div class="rec-title">Mandate audit firm rotation on long-running projects</div>
+          <div class="rec-body">Long-term relationships between audit firms and project officials create the conditions
+            for insider capture. Mandatory rotation — aligned with procurement cycles — disrupts the trust networks that
+            enable misconduct.</div>
+          <span class="rec-horizon h-med">Medium-term</span>
+        </div>
+        <div class="rec-card">
+          <div class="rec-num">09</div>
+          <div class="rec-title">Real-time financial monitoring as a complement to audit</div>
+          <div class="rec-body">Supplement annual audit assurance with continuous digital financial monitoring tools —
+            particularly in fragile-state contexts where the audit cycle is too slow to detect and deter misconduct in
+            near-real-time.</div>
+          <span class="rec-horizon h-long">Long-term</span>
+        </div>
+      </div>
+
+      <h3 style="margin: 32px 0 16px; color: var(--teal);">C. For ICPAK &amp; the Audit Profession</h3>
+      <div class="rec-grid">
+        <div class="rec-card">
+          <div class="rec-num">10</div>
+          <div class="rec-title">Establish a public register of MDB-related sanctions</div>
+          <div class="rec-body">ICPAK should create and maintain a public register of any World Bank or MDB sanctions
+            involving Kenyan-registered firms or certified professionals — independent of whether the firm self-reports.
+          </div>
+          <span class="rec-horizon h-med">Medium-term</span>
+        </div>
+        <div class="rec-card">
+          <div class="rec-num">11</div>
+          <div class="rec-title">Mandatory MDB ethics training for development finance practitioners</div>
+          <div class="rec-body">CPD requirements should include jurisdiction-specific training on MDB procurement rules,
+            donor reporting standards, and conflict-of-interest obligations for any CPA working on donor-financed
+            engagements.</div>
+          <span class="rec-horizon h-imm">Immediate</span>
+        </div>
+        <div class="rec-card">
+          <div class="rec-num">12</div>
+          <div class="rec-title">Formalise information sharing with WBG INT</div>
+          <div class="rec-body">A mutual recognition or information-sharing agreement between ICPAK and the World Bank
+            Integrity Vice Presidency would allow investigation findings to inform domestic professional disciplinary
+            proceedings without duplication of effort.</div>
+          <span class="rec-horizon h-long">Long-term</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ METHODOLOGY ════════════════════════════════════════════════════ -->
+    <section class="section">
+      <div class="section-label">09 — Methodology &amp; Competencies</div>
+      <h2>Analytical Approach</h2>
+
+      <div class="card-grid cols-2">
+        <div class="card">
+          <h3>Research Methodology</h3>
+          <p style="font-size:13px;">Secondary research drawing on World Bank Group official press releases, WBG
+            Sanctions Board records, East African financial and legal press (Business Daily Africa, Daily Nation, The
+            Standard, Kenyan Wall Street), legal reporting from Legalbrief, and Serrari Group analysis. All factual
+            claims triangulated across a minimum of two independent sources.</p>
+        </div>
+        <div class="card">
+          <h3>Analytical Frameworks Applied</h3>
+          <p style="font-size:13px;">Root Cause Analysis (RCA) using the Ishikawa/Fishbone methodology; SWOT analysis;
+            stakeholder power-interest mapping; impact severity assessment; comparative case analysis (EY Kenya vs PwC
+            Kenya); horizon-based strategic recommendation structuring (immediate / medium-term / long-term).</p>
+        </div>
+        <div class="card">
+          <h3>Key Sources</h3>
+          <p style="font-size:13px;">World Bank Group press release, 26 June 2024 · World Bank Group press release, 18
+            March 2026 · Daily Nation — "Big Four, Big Shame" investigative feature, March 2026 · Business Daily Africa
+            · Hiiraan Online · Serrari Group debarment analysis · Kenyan Wall Street · Legalbrief Africa</p>
+        </div>
+        <div class="card">
+          <h3>Skills Demonstrated</h3>
+          <p style="font-size:13px;">Business analysis and case structuring · Regulatory risk assessment · Stakeholder
+            impact analysis · Root cause investigation · Strategic framework development (SWOT, RCA) · Development
+            finance sector knowledge · Professional services industry analysis · Research synthesis and executive
+            communication</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ SYSTEMIC OBSERVATION ══════════════════════════════════════════ -->
+    <section class="section">
+      <div class="section-label">10 — Systemic Observation</div>
+      <h2>The Structural Governance Gap in Development Finance Audit</h2>
+
+      <div class="highlight">
+        <strong>Core finding:</strong> The EY Kenya and PwC Kenya debarments are not isolated ethical failures — they
+        are symptoms of a structural flaw in how development finance audit engagements are designed. Audit firms are
+        hired and paid by implementing agencies (which have an interest in clean audit opinions), while the World Bank
+        and other MDBs rely on those same firms' independence. This creates an inherent conflict that individual ethics
+        controls alone cannot reliably overcome.
+      </div>
+
+      <p>The World Bank's response — negotiated settlements, reduced debarments in exchange for cooperation and
+        compliance programmes — represents a pragmatic and evidence-based regulatory approach. The conditional release
+        model incentivises firms to cooperate and self-reform rather than contest findings, reducing the burden on the
+        Sanctions Board and accelerating the rehabilitation timeline.</p>
+
+      <p>However, the frequency of Big 4 debarments in East Africa (two within two years) suggests that the deterrence
+        effect of individual sanctions is insufficient without complementary structural reform. The fundamental
+        principal-agent problem — where the entity whose work is being assured controls the selection and payment of the
+        assurer — requires structural, not merely behavioural, solutions.</p>
+
+      <p style="margin-bottom:0;">This case study demonstrates that regulatory risk in professional services is not
+        simply a function of individual misconduct: it is a product of institutional design, incentive structures, and
+        governance architecture. Firms operating in high-risk, high-complexity, multi-stakeholder environments —
+        particularly in development finance — must manage regulatory risk as a strategic priority, not a compliance
+        afterthought.</p>
+    </section>
+  </div>
+
+  <!-- ══ FOOTER ══════════════════════════════════════════════════════════ -->
+  <footer class="doc-footer">
+    <strong>Analysis prepared by Ronald Mutarura</strong><br>
+    A business analysis case study · 2025–2026
+  </footer>
+
+</body>
+
+</html>
